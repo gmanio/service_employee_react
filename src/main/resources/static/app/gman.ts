@@ -1,19 +1,26 @@
 import {Component, OnInit} from 'angular2/core';
-
+import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {AppComponent} from "./app.component";
 
 @Component({
     selector: 'my-app',
-    templateUrl: './html/gman.html'
+    templateUrl: './html/gman.html',
+    directives: [ROUTER_DIRECTIVES]
 })
 
+//@RouteConfig([
+//    { path: '/index', component: AppComponent, name: 'AppComponent' }
+//])
+
 export class GmanComponent implements OnInit{
-    constructor(){
+    constructor(private _router:Router){
+        this._router = _router;
         console.log("testt");
     }
 
     public onSelect() {
-        alert("test");
-        debugger;
+        this._router.parent.hostComponent();
+        //this._router.navigate(["AppComponent"]);
         return false;
     }
 

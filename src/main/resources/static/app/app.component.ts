@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router,RouterLink, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {GmanComponent} from "./gman";
 
 
@@ -15,10 +15,13 @@ import {GmanComponent} from "./gman";
 
 export class AppComponent {
 
-    //
-    //ngOnInit() {
-    //    console.log("ngOnInit");
-    //}
+    constructor(){
+        console.log("App Component")
+    }
+
+    ngOnInit() {
+        console.log("AppComponent ngOnInit");
+    }
     //ngOnDestroy() {
     //    console.log("ngOnDestroy");
     //}
