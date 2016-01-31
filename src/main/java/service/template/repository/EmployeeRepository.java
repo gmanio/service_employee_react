@@ -7,4 +7,5 @@ import service.template.model.Employee;
  * Created by gmanpark on 2016. 1. 31..
  */
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+    Employee findByEmpNo(int empNo);
 }

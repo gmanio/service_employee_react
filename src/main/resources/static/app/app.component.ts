@@ -1,22 +1,33 @@
 import {Component} from 'angular2/core';
-import {Router,RouterLink, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 import {GmanComponent} from "./gman";
 
 
 @Component({
-    selector: 'my-app',
-    templateUrl: './html/app.html',
+    selector: 'app',
+    templateUrl: '/html/app.html',
     directives: [ROUTER_DIRECTIVES]
 })
 
 @RouteConfig([
-    { path: '/GmanDetail', component: GmanComponent, name: 'GmanDetail' }
+    {...}
 ])
 
 export class AppComponent {
 
     constructor(){
-        console.log("App Component")
+        debugger;
+        //this.router = router;
+        //this.router.config([
+        //    { path: '/gman', component : GmanComponent, name:'GmanComponent' }
+        //]);
+    }
+
+    onSelect(){
+        console.log("tt");
+        //this.router.navigate(['GmanComponent']);
+
+        return false;
     }
 
     ngOnInit() {
