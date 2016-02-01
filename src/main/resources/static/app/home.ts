@@ -1,14 +1,13 @@
 import {Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {AppComponent} from "./app.component";
 //import {Http, HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
     selector: 'app',
-    templateUrl: './html/gman.html'
+    templateUrl: './html/home.html'
 })
 
-export class GmanComponent{
+export class HomeComponent{
     constructor(router:Router){
         this.router = router;
     }

@@ -1,8 +1,8 @@
-<div>
-    <a href="" (click)="onSelect()">goGman</a>
 
-    <!--<nav>-->
-        <!--<a [routerLink]="['/GmanDetail']">gman Detail</a>-->
-    <!--</nav>-->
-    <!--<router-outlet></router-outlet>-->
+<div id="wrap">
+    <a href="" (click)="onSelect('gman')">goGman</a>
+    <a href="" (click)="onSelect('home')">goHome</a>
+    <div id="container">
+        <router-outlet></router-outlet>
+    </div>
 </div>

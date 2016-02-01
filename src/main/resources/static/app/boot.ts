@@ -5,7 +5,5 @@ import {provide} from 'angular2/core';
 
 
 bootstrap(AppComponent,[
-    ROUTER_PROVIDERS,
-    PathLocationStrategy,
-    provide(APP_BASE_HREF, {useValue: '/'})
+    ROUTER_PROVIDERS
 ]);
