@@ -1,12 +1,13 @@
 import {Component} from 'angular2/core';
 import {Router,ROUTER_DIRECTIVES, RouteConfig, RouterOutlet} from 'angular2/router';
+import {Http, Response, HTTP_PROVIDERS} from 'angular2/http'
 import {GmanComponent} from "./gman";
 import {HomeComponent} from "./home";
 
 @Component({
     selector: 'app',
     templateUrl: '/html/app.html',
-    directives: [GmanComponent, ROUTER_DIRECTIVES, RouterOutlet]
+    directives: [GmanComponent, RouterOutlet]
 })
 
 @RouteConfig([
@@ -15,18 +16,42 @@ import {HomeComponent} from "./home";
 ])
 
 export class AppComponent {
-    constructor(router:Router) {
-        this.router = router;
+    constructor(http: Http) {
+        //this.router = router;
+        this.http = http;
+    }
+
+    renderTmpl(res){
+        debugger;
     }
 
     onSelect(sType) {
-        if(sType == "gman"){
-            this.router.navigate(['Gman']);
-        }
 
-        if(sType == "home"){
-            this.router.navigate(['Home']);
-        }
+        this.http.get('/id')
+            .subscribe(
+                this.renderTmpl,
+                err => console.error(err),
+                () => console.log('done')
+            );
+        //this.http.get('/id')
+        //    .map((res:Response) => res.json())
+        //    .subscribe(
+        //        data => { console.log(data)},
+        //        err => console.error(err),
+        //        () => console.log('done')
+        //    );
+
+
+
+        //http.get('/id').map((res: Response) => res.json()).subscribe(res => this.result = res);
+
+        //if(sType == "gman"){
+        //    this.router.navigate(['Gman']);
+        //}
+        //
+        //if(sType == "home"){
+        //    this.router.navigate(['Home']);
+        //}
 
         return false;
     }
