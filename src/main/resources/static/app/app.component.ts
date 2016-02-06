@@ -21,15 +21,25 @@ export class AppComponent {
         this.http = http;
     }
 
+    printCurrentTime(){
+        let today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+
+        console.log(h +" : " + m + " : " + s);
+    }
+
     renderTmpl(res){
-        debugger;
+        this.nEnd = new Date().getTime();
+        console.log(this.nEnd - this.nStart);
     }
 
     onSelect(sType) {
-
+        this.nStart = new Date().getTime();
         this.http.get('/id')
             .subscribe(
-                this.renderTmpl,
+                () => this.renderTmpl(),
                 err => console.error(err),
                 () => console.log('done')
             );

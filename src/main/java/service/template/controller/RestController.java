@@ -1,6 +1,7 @@
 package service.template.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,15 +23,16 @@ public class RestController {
 
     @RequestMapping(value = "/id", method = RequestMethod.GET)
     @ResponseBody
+    @Cacheable(value = "employees")
     public List<Employee> getEmployee(){
 
         List<Employee> empList = new ArrayList<Employee>();
 
-        for (int i = 10001; i < 10051; i++) {
-            empList.add(employeeRepository.findByEmpNo(i));
-        }
+//        for (int i = 10001; i < 10201; i++) {
+//            empList.add(employeeRepository.findByEmpNo(i));
+//        }
 
-        return empList;
+        return employeeRepository.findAll();
     }
 
 }
