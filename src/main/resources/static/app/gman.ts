@@ -5,7 +5,7 @@ import {AppComponent} from "./app.component";
 
 @Component({
     selector: 'app',
-    templateUrl: './html/gman.html'
+    templateUrl: './views/gman.html'
 })
 
 export class GmanComponent{

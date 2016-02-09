@@ -4,7 +4,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'app',
-    templateUrl: './html/home.html'
+    templateUrl: './views/home.html'
 })
 
 export class HomeComponent{

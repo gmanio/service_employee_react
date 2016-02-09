@@ -6,62 +6,56 @@ import {HomeComponent} from "./home";
 
 @Component({
     selector: 'app',
-    templateUrl: '/html/app.html',
-    directives: [GmanComponent, RouterOutlet]
+    templateUrl: '/views/app.html'
 })
 
-@RouteConfig([
-    {path: '/gman', name: 'Gman', component: GmanComponent, useAsDefault: true},
-    {path: '/home', name: 'Home', component: HomeComponent}
-])
 
 export class AppComponent {
-    constructor(http: Http) {
-        //this.router = router;
+    constructor(router:Router, http:Http) {
+        this.router = router;
+        this.router.config([
+            {path: '/gman', name: 'Gman', component: GmanComponent, useAsDefault: true},
+            {path: '/home', name: 'Home', component: HomeComponent}
+        ]);
         this.http = http;
     }
 
-    printCurrentTime(){
+    printCurrentTime() {
         let today = new Date();
         let h = today.getHours();
         let m = today.getMinutes();
         let s = today.getSeconds();
 
-        console.log(h +" : " + m + " : " + s);
+        console.log(h + " : " + m + " : " + s);
     }
 
-    renderTmpl(res){
+    renderTmpl(res) {
         this.nEnd = new Date().getTime();
+
         console.log(this.nEnd - this.nStart);
+        debugger;
     }
 
-    onSelect(sType) {
+    getData() {
         this.nStart = new Date().getTime();
-        this.http.get('/id')
+        this.http.get('/id?page=100')
             .subscribe(
-                () => this.renderTmpl(),
+                (res) => this.renderTmpl(res),
                 err => console.error(err),
                 () => console.log('done')
             );
-        //this.http.get('/id')
-        //    .map((res:Response) => res.json())
-        //    .subscribe(
-        //        data => { console.log(data)},
-        //        err => console.error(err),
-        //        () => console.log('done')
-        //    );
+    }
 
+    onSelect(sType) {
 
+        debugger;
+        if (sType == "gman") {
+            this.router.navigate(['Gman']);
+        }
 
-        //http.get('/id').map((res: Response) => res.json()).subscribe(res => this.result = res);
-
-        //if(sType == "gman"){
-        //    this.router.navigate(['Gman']);
-        //}
-        //
-        //if(sType == "home"){
-        //    this.router.navigate(['Home']);
-        //}
+        if (sType == "home") {
+            this.router.navigate(['Home']);
+        }
 
         return false;
     }
