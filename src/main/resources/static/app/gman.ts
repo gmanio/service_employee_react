@@ -1,9 +1,10 @@
-import {Component,OnInit, OnDestroy} from 'angular2/core';
+import {Component,OnInit, OnDestroy, ViewEncapsulation} from 'angular2/core';
 //import {Http, HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
     selector: 'app',
-    templateUrl: './views/gman.html'
+    templateUrl: './views/gman.html',
+    encapsulation: ViewEncapsulation.None
 })
 
 export class GmanComponent implements OnInit, OnDestroy{

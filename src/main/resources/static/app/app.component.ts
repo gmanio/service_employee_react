@@ -1,4 +1,4 @@
-import {Component,Inject} from 'angular2/core';
+import {Component,OnInit, OnDestroy, ViewEncapsulation} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
 import {Http} from 'angular2/http'
 
@@ -8,17 +8,18 @@ import {HomeComponent} from "./home";
 @Component({
     selector: 'app',
     templateUrl: '/views/app.html',
+    encapsulation: ViewEncapsulation.None,
     directives: [ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
 
 @RouteConfig([
-    {path: './gman', name: 'Gman', component: GmanComponent, useAsDefault: true },
-    {path: './home', name: 'Home', component: HomeComponent}
+    {path: '/gman', name: 'Gman', component: GmanComponent, useAsDefault: true },
+    {path: '/home', name: 'Home', component: HomeComponent}
 ])
 
-export class AppComponent {
-    constructor(@Inject(Router) router: Router, http:Http) {
+export class AppComponent implements OnInit, OnDestroy{
+    constructor(router: Router, http:Http) {
         this.router = router;
         this.http = http;
         //this.router.config([
@@ -73,9 +74,9 @@ export class AppComponent {
         console.log("AppComponent ngOnInit");
     }
 
-    //ngOnDestroy() {
-    //    console.log("ngOnDestroy");
-    //}
+    ngOnDestroy() {
+        console.log("ngOnDestroy");
+    }
     //ngDoCheck() {
     //    console.log("ngDoCheck");
     //}

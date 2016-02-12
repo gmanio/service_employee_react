@@ -3,7 +3,7 @@ import {Component,OnInit, OnDestroy} from 'angular2/core';
 //import {Http, HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
-    selector: 'app',
+    selector: 'router-outlet',
     templateUrl: './views/home.html'
 })
 
