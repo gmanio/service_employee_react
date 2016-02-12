@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component,OnInit, OnDestroy} from 'angular2/core';
+//import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 //import {Http, HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
@@ -7,9 +7,9 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
     templateUrl: './views/home.html'
 })
 
-export class HomeComponent{
-    constructor(router:Router){
-        this.router = router;
+export class HomeComponent implements OnInit, OnDestroy {
+    constructor(){
+        console.log('test');
     }
 
     public onSelect() {

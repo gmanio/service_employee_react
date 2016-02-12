@@ -1,23 +1,30 @@
-import {Component} from 'angular2/core';
-import {Router,ROUTER_DIRECTIVES, RouteConfig, RouterOutlet} from 'angular2/router';
-import {Http, Response, HTTP_PROVIDERS} from 'angular2/http'
+import {Component,Inject} from 'angular2/core';
+import {Router, RouteConfig, ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
+import {Http} from 'angular2/http'
+
 import {GmanComponent} from "./gman";
 import {HomeComponent} from "./home";
 
 @Component({
     selector: 'app',
-    templateUrl: '/views/app.html'
+    templateUrl: '/views/app.html',
+    directives: [ROUTER_DIRECTIVES],
+    providers: [ROUTER_PROVIDERS]
 })
 
+@RouteConfig([
+    {path: './gman', name: 'Gman', component: GmanComponent, useAsDefault: true },
+    {path: './home', name: 'Home', component: HomeComponent}
+])
 
 export class AppComponent {
-    constructor(router:Router, http:Http) {
+    constructor(@Inject(Router) router: Router, http:Http) {
         this.router = router;
-        this.router.config([
-            {path: '/gman', name: 'Gman', component: GmanComponent, useAsDefault: true},
-            {path: '/home', name: 'Home', component: HomeComponent}
-        ]);
         this.http = http;
+        //this.router.config([
+        //    {path: '/gman', name: 'Gman', component: GmanComponent, useAsDefault: true},
+        //    {path: '/home', name: 'Home', component: HomeComponent}
+        //]);
     }
 
     printCurrentTime() {
@@ -38,16 +45,18 @@ export class AppComponent {
 
     getData() {
         this.nStart = new Date().getTime();
-        this.http.get('/id?page=100')
-            .subscribe(
-                (res) => this.renderTmpl(res),
-                err => console.error(err),
-                () => console.log('done')
-            );
+        this.http
+        .get('/id?page=100')
+        .subscribe(
+            (res) => this.renderTmpl(res),
+            err => console.error(err),
+            () => console.log('done')
+        );
+
+        return false;
     }
 
     onSelect(sType) {
-
         debugger;
         if (sType == "gman") {
             this.router.navigate(['Gman']);

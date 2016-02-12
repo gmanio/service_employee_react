@@ -1,6 +1,4 @@
-import {Component} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {AppComponent} from "./app.component";
+import {Component,OnInit, OnDestroy} from 'angular2/core';
 //import {Http, HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
@@ -8,9 +6,9 @@ import {AppComponent} from "./app.component";
     templateUrl: './views/gman.html'
 })
 
-export class GmanComponent{
-    constructor(router:Router) {
-        this.router = router;
+export class GmanComponent implements OnInit, OnDestroy{
+    constructor() {
+        console.log('test');
     }
 
     public onSelect() {
