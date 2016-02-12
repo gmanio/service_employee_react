@@ -9,7 +9,7 @@ import {AppComponent} from "./app.component";
 })
 
 export class GmanComponent{
-    constructor(router:Router){
+    constructor(router:Router) {
         this.router = router;
     }
 
