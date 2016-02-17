@@ -15,17 +15,28 @@ import {HomeComponent} from "./home";
 
 @RouteConfig([
     {path: '/gman', name: 'Gman', component: GmanComponent, useAsDefault: true },
-    {path: '/home', name: 'Home', component: HomeComponent}
+    {path: '/index', name: 'Home', component: AppComponent},
 ])
 
 export class AppComponent implements OnInit, OnDestroy{
-    constructor(router: Router, http:Http) {
+    constructor(public router: Router, public http:Http) {
+
         this.router = router;
         this.http = http;
         //this.router.config([
         //    {path: '/gman', name: 'Gman', component: GmanComponent, useAsDefault: true},
         //    {path: '/home', name: 'Home', component: HomeComponent}
         //]);
+
+        this.setEvent();
+    }
+
+    setEvent(){
+        document.addEventListener('click', (evt)=>this.onDocument())
+    }
+
+    onDocument(e){
+        this.router.navigate(['Gman']);
     }
 
     printCurrentTime() {
