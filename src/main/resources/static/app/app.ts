@@ -1,43 +1,53 @@
 import {Component,OnInit, OnDestroy, ViewEncapsulation} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
+import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http} from 'angular2/http'
 
-import {GmanComponent} from "./gman";
-import {HomeComponent} from "./home";
+import GmanComponent from "./component/gman/gman";
+import HomeComponent from "./component/home/home";
 
 @Component({
     selector: 'app',
-    templateUrl: '/views/app.html',
-    encapsulation: ViewEncapsulation.None,
-    directives: [ROUTER_DIRECTIVES],
-    providers: [ROUTER_PROVIDERS]
+    template:`<div>CssTest</div>
+                <router-outlet></router-outlet>
+                `,
+    directives: [ROUTER_DIRECTIVES]
 })
 
 @RouteConfig([
-    {path: '/gman', name: 'Gman', component: GmanComponent, useAsDefault: true },
-    {path: '/index', name: 'Home', component: AppComponent},
+    {path: '/gman', name: 'Gman', component: GmanComponent},
+    {path: '/home', name: 'Home', component: HomeComponent}
 ])
 
-export class AppComponent implements OnInit, OnDestroy{
-    constructor(public router: Router, public http:Http) {
-
+class AppComponent implements OnInit, OnDestroy {
+    private bIsHome = false;
+    constructor(public router:Router, public http:Http) {
         this.router = router;
         this.http = http;
-        //this.router.config([
-        //    {path: '/gman', name: 'Gman', component: GmanComponent, useAsDefault: true},
-        //    {path: '/home', name: 'Home', component: HomeComponent}
-        //]);
 
         this.setEvent();
     }
 
-    setEvent(){
-        document.addEventListener('click', (evt)=>this.onDocument())
+    setEvent() {
+        //document.addEventListener('click', (evt)=>{
+        //    if(this.bIsHome){
+        //        this.bIsHome = false;
+        //        this.goesGman();
+        //    }else{
+        //        this.bIsHome = true;
+        //        this.goesHome();
+        //    }
+        //})
     }
 
-    onDocument(e){
-        this.router.navigate(['Gman']);
-    }
+    //goesHome(){
+    //    this.router.navigate(['Home']);
+    //    return false;
+    //}
+    //
+    //goesGman(){
+    //    this.router.navigate(['Gman']);
+    //    return false;
+    //}
 
     printCurrentTime() {
         let today = new Date();
@@ -58,12 +68,12 @@ export class AppComponent implements OnInit, OnDestroy{
     getData() {
         this.nStart = new Date().getTime();
         this.http
-        .get('/id?page=100')
-        .subscribe(
-            (res) => this.renderTmpl(res),
-            err => console.error(err),
-            () => console.log('done')
-        );
+            .get('/id?page=100')
+            .subscribe(
+                (res) => this.renderTmpl(res),
+                err => console.error(err),
+                () => console.log('done')
+            );
 
         return false;
     }
@@ -82,12 +92,13 @@ export class AppComponent implements OnInit, OnDestroy{
     }
 
     ngOnInit() {
-        console.log("AppComponent ngOnInit");
+        console.log("init:: AppComponent");
     }
 
     ngOnDestroy() {
         console.log("ngOnDestroy");
     }
+
     //ngDoCheck() {
     //    console.log("ngDoCheck");
     //}
@@ -105,3 +116,4 @@ export class AppComponent implements OnInit, OnDestroy{
     //    console.log("ngAfterViewChecked");    }
 }
 
+export default AppComponent;

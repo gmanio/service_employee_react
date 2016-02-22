@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Append Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+</head>
+<body>
+<div id="wrap">
+
+</div>
+
+<script id="tmpl_element" type="text/x-jquery-tmpl">
+    <p>${data}</p>
+</script>
+
+<script id="each_tmpl_element" type="text/x-jquery-tmpl">
+{{each datas}}
+    <p>${this}</p>
+{{/each}}
+</script>
+
+<script>
+    var oTimer = new Date();
+    var nTemplateCount = 1000;
+
+    var arrDatas = [];
+    for (var i = 0; i < nTemplateCount; i++) {
+        arrDatas.push(i);
+    }
+
+    /**
+     * jQuery
+     */
+    ;(function(){
+        console.time('jQuery');
+
+        var welWrap = $('#wrap');
+        var arrWel = [];
+        var welInsert = $('<p>');
+        for (var i = 0; i < nTemplateCount; i++) {
+            var welClone = welInsert.clone().text(i);
+            arrWel.push(welClone);
+        }
+
+        welWrap.append(arrWel);
+        console.timeEnd('jQuery');
+    })();
+
+    /**
+     * native Append
+     */
+    ;(function () {
+        console.time('Native');
+
+        var elWrap = document.getElementById('wrap');
+        var raw_fragment = document.createDocumentFragment();
+
+        for (var i = 0; i < nTemplateCount; i++) {
+            var elInsert = document.createElement('p');
+            elInsert.appendChild(document.createTextNode(i));
+            raw_fragment.appendChild(elInsert);
+        }
+
+        elWrap.appendChild(raw_fragment);
+        console.timeEnd('Native');
+    })();
+
+
+//    /**
+//     * jQuery Template
+//     */
+//    ;(function(){
+//        console.time('jQueryTmpl');
+//
+//        var welWrap = $('#wrap');
+//debugger;
+//        welWrap.append($('#tmpl_element').tmpl({datas:arrDatas}));
+//        console.timeEnd('jQueryTmpl');
+//    })();
+
+</script>
+
+</body>
+</html>

@@ -1,19 +1,25 @@
-import {Component,OnInit, OnDestroy, ViewEncapsulation} from 'angular2/core';
-//import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Component,OnInit, OnDestroy} from 'angular2/core';
+import {Router, RouteConfig, ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
 
 @Component({
-    selector: 'app',
-    templateUrl: './views/gman.html',
-    encapsulation: ViewEncapsulation.None
+    selector: 'home',
+    templateUrl: 'app/component/home/home.html',
+    directives: [ROUTER_DIRECTIVES]
 })
 
-export class GmanComponent implements OnInit, OnDestroy{
-    constructor() {
+//@RouteConfig([
+//    //{path: '/gman', name: 'Gman', component: GmanComponent}
+//])
+
+class HomeComponent implements OnInit, OnDestroy {
+    constructor(public router : Router){
+        this.router = router;
         console.log('test');
+        return false;
     }
 
     public onSelect() {
-
+        this.router.navigate(['Gman']);
         return false;
     }
 
@@ -45,3 +51,5 @@ export class GmanComponent implements OnInit, OnDestroy{
         console.log("ngAfterViewChecked");
     }
 }
+
+export default HomeComponent;
