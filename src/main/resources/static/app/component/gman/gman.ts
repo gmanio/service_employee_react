@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ViewEncapsulation} from 'angular2/core';
+import {Component, OnInit, OnDestroy} from 'angular2/core';
 import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http} from 'angular2/http';
 
@@ -11,7 +11,6 @@ import {Http} from 'angular2/http';
 
 class GmanComponent implements OnInit, OnDestroy {
     constructor(router:Router, http:Http) {
-        debugger;
         this.http  = http;
         this.router = router;
         console.log('test');

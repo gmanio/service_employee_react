@@ -7,14 +7,13 @@ import HomeComponent from "./component/home/home";
 
 @Component({
     selector: 'app',
-    template:`
-    <div class="component" (onFire)="onFire()">listener</div>
-    <router-outlet></router-outlet>`,
-    styleUrls:['./app/app.css'],
+    templateUrl:'./app/app.html',
+    styleUrls:['./app/default.css'],
     directives: [ROUTER_DIRECTIVES]
 })
 
 @RouteConfig([
+    {path: '/', redirectTo: ['/Home']},
     {path: '/gman', name: 'Gman', component: GmanComponent},
     {path: '/home', name: 'Home', component: HomeComponent}
 ])
@@ -25,7 +24,6 @@ class AppComponent implements OnInit, OnDestroy {
         this.http = http;
 
         this.setEvent();
-
     }
 
     setEvent() {
@@ -64,7 +62,6 @@ class AppComponent implements OnInit, OnDestroy {
         this.nEnd = new Date().getTime();
 
         console.log(this.nEnd - this.nStart);
-        debugger;
     }
 
     getData() {
@@ -81,7 +78,6 @@ class AppComponent implements OnInit, OnDestroy {
     }
 
     onSelect(sType) {
-        debugger;
         if (sType == "gman") {
             this.router.navigate(['Gman']);
         }
@@ -104,16 +100,21 @@ class AppComponent implements OnInit, OnDestroy {
     //ngDoCheck() {
     //    console.log("ngDoCheck");
     //}
+
     //ngOnChanges(changes) {
     //    console.log("ngOnChanges"+ changes);
     //}
+
     //ngAfterContentInit() {
     //    console.log("ngAfterContentInit");
     //}
+
     //ngAfterContentChecked() {
     //    console.log("ngAfterContentChecked");    }
+
     //ngAfterViewInit() {
     //    console.log("ngAfterViewInit");    }
+
     //ngAfterViewChecked() {
     //    console.log("ngAfterViewChecked");    }
 }

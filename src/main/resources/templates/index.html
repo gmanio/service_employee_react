@@ -24,7 +24,8 @@
             typescriptOptions: {emitDecoratorMetadata: true},
             packages: {'app':{defaultExtension: 'ts'}}
         });
-        System.import('app/boot')
+
+        System.import('boot.ts')
                 .then(null, console.error.bind(console));
     </script>
 </head>

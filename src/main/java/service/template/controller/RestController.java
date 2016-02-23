@@ -22,7 +22,7 @@ public class RestController {
 
     @RequestMapping(value = "/id", method = RequestMethod.GET)
     @ResponseBody
-    @Cacheable(value = "employees")
+    @Cacheable(value = "_getAllEmployees")
     public Page<Employee> getEmployee(
             @RequestParam("page") int page){
         return employeeService.findAll(page);

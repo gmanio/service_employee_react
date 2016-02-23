@@ -17,8 +17,8 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    public Page<Employee> findAll(int page){
-        Pageable pageable = new PageRequest(0, page, Sort.Direction.ASC, "empNo");
+    public Page<Employee> findAll(int employeeCount){
+        Pageable pageable = new PageRequest(0, employeeCount, Sort.Direction.ASC, "empNo");
 
         return this.employeeRepository.findAll(pageable);
     }
