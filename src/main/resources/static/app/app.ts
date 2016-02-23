@@ -7,9 +7,10 @@ import HomeComponent from "./component/home/home";
 
 @Component({
     selector: 'app',
-    template:`<div>CssTest</div>
-                <router-outlet></router-outlet>
-                `,
+    template:`
+    <div class="component" (onFire)="onFire()">listener</div>
+    <router-outlet></router-outlet>`,
+    styleUrls:['./app/app.css'],
     directives: [ROUTER_DIRECTIVES]
 })
 
@@ -19,15 +20,16 @@ import HomeComponent from "./component/home/home";
 ])
 
 class AppComponent implements OnInit, OnDestroy {
-    private bIsHome = false;
     constructor(public router:Router, public http:Http) {
         this.router = router;
         this.http = http;
 
         this.setEvent();
+
     }
 
     setEvent() {
+        this.router.navigate(['Home']);
         //document.addEventListener('click', (evt)=>{
         //    if(this.bIsHome){
         //        this.bIsHome = false;

@@ -1,23 +1,18 @@
 import {Component, OnInit, OnDestroy, ViewEncapsulation} from 'angular2/core';
 import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Http} from 'angular2/http';
 
-//import {Http, HTTP_PROVIDERS} from 'angular2/http';
-//import {HomeComponent} from "./../home/home";
 @Component({
-    selector: 'app',
+    selector: 'gman',
     styleUrls:['./app/component/gman/gman.css'],
     templateUrl: './app/component/gman/gman.html',
     directives: [ROUTER_DIRECTIVES]
 })
 
-//@RouteConfig([
-//    {path: '/home', name: 'Home', component: HomeComponent}
-//])
-
 class GmanComponent implements OnInit, OnDestroy {
-    public stat = 5;
-
-    constructor(public router:Router) {
+    constructor(router:Router, http:Http) {
+        debugger;
+        this.http  = http;
         this.router = router;
         console.log('test');
     }
@@ -27,9 +22,21 @@ class GmanComponent implements OnInit, OnDestroy {
         return false;
     }
 
+    public getData() {
+        this.http
+            .get('/id?page=100')
+            .subscribe(
+                (res) => this.renderTmpl(res),
+                err => console.error(err),
+                () => console.log('done')
+            );
+    }
+
+    public renderTmpl(){
+        debugger;
+    }
+
     ngOnInit() {
-        //let test = this._http.get("/id");
-        //debugger;
         console.log("ngOnInit");
     }
 
@@ -50,7 +57,6 @@ class GmanComponent implements OnInit, OnDestroy {
     }
 
     ngAfterContentChecked() {
-        console.log(this.stat);
         console.log("ngAfterContentChecked");
     }
 

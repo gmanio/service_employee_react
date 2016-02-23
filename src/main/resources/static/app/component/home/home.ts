@@ -1,26 +1,27 @@
 import {Component,OnInit, OnDestroy} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES,ROUTER_PROVIDERS} from 'angular2/router';
+import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import InputComponent from "./../input/input";
 
 @Component({
     selector: 'home',
     templateUrl: 'app/component/home/home.html',
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, InputComponent]
 })
-
-//@RouteConfig([
-//    //{path: '/gman', name: 'Gman', component: GmanComponent}
-//])
 
 class HomeComponent implements OnInit, OnDestroy {
     constructor(public router : Router){
         this.router = router;
         console.log('test');
-        return false;
     }
 
     public onSelect() {
         this.router.navigate(['Gman']);
+        //this.router.navigate(['Input']);
         return false;
+    }
+
+    onFire(){
+        debugger;
     }
 
     ngOnInit() {
